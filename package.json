@@ -1,0 +1,23 @@
+{
+  "name": "d3BrushAndLinkingExample-step_2",
+  "version": "1.0.0",
+  "description": "A step by step tutorial on how to do brushing and linking on d3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/john-guerra/w209Brush.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/john-guerra/w209Brush/issues"
+  },
+  "homepage": "https://github.com/john-guerra/w209Brush#readme",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
