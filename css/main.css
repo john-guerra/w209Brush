@@ -1,3 +1,8 @@
-.bar {
+#gates .bar {
   fill: limegreen;
 }
+
+#carTypes .bar {
+  fill: steelblue;
+}
+
