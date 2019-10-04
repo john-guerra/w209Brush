@@ -1,15 +1,13 @@
-/* global d3, barChart */
-
-
+/* global d3, barChart, crossfilter */
 
 console.log("works!", d3);
 
 var bcGates = barChart()
   .x(function(d) {
-    return d.x;
+    return d.key;
   })
   .y(function(d) {
-    return d.y;
+    return d.value;
   });
 
 var bcCars = barChart()
@@ -23,32 +21,29 @@ var bcCars = barChart()
 d3.csv("./Lekagul_slice.csv", function(err, data) {
   if (err) throw err;
 
-  console.log("Got data", data[0]);
+  var cs = crossfilter(data);
 
-  var count = 0;
-  for (var row of data) {
-    if (row["gate-name"] === "entrance3") {
-      count++;
-    }
-  }
+  var dimGate = cs.dimension(function(d) {
+    return d["gate-name"];
+  });
+  var binGates = dimGate.group();
+
+  console.log("gates=", binGates.all());
 
   d3.select("#gates")
-    .datum([
-      { x: "uno", y: 1 }, //Fake data
-      { x: "dos", y: 5 },
-      { x: "tres", y: 3 }
-    ])
-    .call(bcGates);
-
+    .datum(binGates.all())
+    .call(bcGates)
+    .selectAll(".x.axis .tick text")
+    .style("text-anchor", "end")
+    .attr("transform", "rotate(-45)");
 
   d3.select("#carTypes")
     .datum([
-      { x: "uno", y: 1 }, //Fake data
-      { x: "dos", y: 5 },
-      { x: "tres", y: 3 }
+      { x: "John", y: 1 }, //Fake data
+      { x: "Mafe", y: 5 },
+      { x: "Santi", y: 3 }
     ])
     .call(bcCars);
 
-
-  console.log("entrance 3 =", count);
+  // console.log("entrance 3 =", count);
 });
